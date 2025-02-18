@@ -15,12 +15,24 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(os.path.join(BASE_DIR, '.env'))
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Configuración Azure Document Intelligence
+ENDPOINT = os.getenv("AZURE_ENDPOINT_DOCUMEN_INTELLIGENCE")
+API_KEY = os.getenv("AZURE_API_KEY_DOCUMEN_INTELLIGENCE")
+MODEL_ID = os.getenv("MODEL")
+PDF_FOLDER_PATH = "pdfs"  # Carpeta que contiene los PDFs
+
+# Configuración Azure SQL Database
+DB_SERVER = os.getenv("DB_SERVER")
+DB_NAME = os.getenv("DB_NAME")
+DB_USERNAME = os.getenv("DB_USERNAME")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_DRIVER = os.getenv("DB_DRIVER")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
