@@ -14,6 +14,7 @@ from pathlib import Path
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+import openai
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -34,6 +35,20 @@ DB_USERNAME = os.getenv("DB_USERNAME")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_DRIVER = os.getenv("DB_DRIVER")
 
+# Configuración de Azure OpenAI
+openai.api_type = "azure"
+openai.api_base = os.getenv("OPENAI_API_ENDPOINT")
+openai.api_version = "2023-06-01-preview"
+openai.api_key = os.getenv("OPENAI_API_KEY")
+deployment_name = os.getenv("DEPLOYMENT_NAME")
+
+# Configuración de conexión a Azure SQL
+server = os.getenv("DB_SERVER")
+database = os.getenv("DB_NAME")
+username = os.getenv("DB_USERNAME")
+password = os.getenv("DB_PASSWORD")
+driver = os.getenv("DB_DRIVER")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -43,8 +58,7 @@ SECRET_KEY = 'django-insecure-x1q!wrx4rtn+7j(3pcw(lim(rju%b$mu*l3cducta75l&^wrah
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
