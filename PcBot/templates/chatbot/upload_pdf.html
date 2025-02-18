@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Computers Bot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c3e50, #4ca1af);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            font-size: 16px;
+            background: #4ca1af;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .custom-file-upload:hover {
+            transform: scale(1.05);
+            background: #3b8c99;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            background: #4ca1af;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: #3b8c99;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            width: 320px;
+            max-width: 90%;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            color: #fff;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card-content {
+            margin-bottom: 12px;
+            color: #eee;
+        }
+
+        .card-content b {
+            color: #fff;
+        }
+
+        .volver-btn {
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #fff;
+            color: #4ca1af;
+            border-radius: 50px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .volver-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Computers Bot</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class="custom-file-upload">
+            Seleccionar archivo
+            <input type="file" name="pdf_file" accept="application/pdf">
+        </label>
+        <button type="submit">Subir PDF</button>
+    </form>
+    {% if ultimo_ordenador %}
+        <h2>Ordenador subido correctamente:</h2>
+        <div class="card">
+            <div class="card-title">{{ ultimo_ordenador.modelo }}</div>
+            <div class="card-content"><b>Marca:</b> {{ ultimo_ordenador.marca }}</div>
+            <div class="card-content"><b>Precio:</b> {{ ultimo_ordenador.precio }}</div>
+            <div class="card-content"><b>Código:</b> {{ ultimo_ordenador.codigo_ordenador }}</div>
+            <div class="card-content"><b>Garantía:</b> {{ ultimo_ordenador.garantia }}</div>
+            <div class="card-content"><b>Modelo gráfica:</b> {{ ultimo_ordenador.modelo_grafica }}</div>
+            <div class="card-content"><b>Procesador:</b> {{ ultimo_ordenador.procesador }} {{ ultimo_ordenador.frecuencia_procesador }}</div>
+            <div class="card-content"><b>RAM:</b> {{ ultimo_ordenador.ram }}</div>
+            <div class="card-content"><b>Sistema operativo:</b> {{ ultimo_ordenador.sistema_operativo }}</div>
+            <div class="card-content"><b>Tarjeta gráfica:</b> {{ ultimo_ordenador.tarjeta_grafica }}</div>
+        </div>
+    {% endif %}
+    <a href="/" class="volver-btn">Página principal</a>
+</body>
+
+</html>
